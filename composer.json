@@ -1,0 +1,37 @@
+{
+  "name": "azirka/job-tracker",
+  "version": "0.0.1",
+  "description": "A Laravel package to monitor jobs by groups, track their execution status, and dispatch events on group start and completion.",
+  "keywords": [
+    "laravel",
+    "job",
+    "tracker",
+    "queue",
+    "monitor",
+    "events"
+  ],
+  "type": "library",
+  "require": {
+    "php": "^8.3",
+    "illuminate/support": "^11.0",
+    "illuminate/database": "^11.0",
+    "illuminate/queue": "^11.0",
+    "illuminate/console": "^11.0",
+    "illuminate/contracts": "^11.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^9",
+    "phpunit/phpunit": "^11.0"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Azirka\\JobTracker\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Artem Zirka"
+    }
+  ]
+}
