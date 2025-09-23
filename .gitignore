@@ -1,6 +1,10 @@
-/.idea
+/vendor/
+/composer.lock
+/.phpunit.cache/
+/.php-cs-fixer.cache
+/.DS_Store
+.idea/
+/coverage/
+
 .env
 docker-compose.yml
-
-/vendor/
-composer.lock

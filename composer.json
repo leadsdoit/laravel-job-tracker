@@ -26,12 +26,14 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Azirka\\JobTracker\\": "src/"
+      "AZirka\\JobTracker\\": "src/"
     }
   },
   "authors": [
     {
-      "name": "Artem Zirka"
+      "name": "Artem Zirka",
+      "email": "zirkaartem@gmail.com",
+      "role": "Developer"
     }
   ]
 }
