@@ -43,5 +43,12 @@
       "role": "Developer"
     }
   ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AZirka\\JobTracker\\JobTrackerServiceProvider"
+      ]
+    }
+  },
   "prefer-stable": true
 }
