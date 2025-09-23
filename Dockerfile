@@ -12,9 +12,13 @@ RUN pecl install xdebug \
 
 RUN { \
       echo "; Xdebug base config"; \
-      echo "zend_extension=/usr/local/lib/php/extensions/$(php -r 'echo PHP_ZTS ? \"no-debug-zts-\" : \"no-debug-non-zts-\";');$(php -r 'echo PHP_VERSION_ID>=80300?\"20230831\":\"\";')/xdebug.so"; \
+      echo "xdebug.mode=develop,debug"; \
+      echo "xdebug.start_with_request=yes"; \
+      echo "xdebug.client_host=host.docker.internal"; \
+      echo "xdebug.client_port=9003"; \
       echo "xdebug.log_level=0"; \
-    } > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    } > /usr/local/etc/php/conf.d/99-xdebug.ini
+
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
