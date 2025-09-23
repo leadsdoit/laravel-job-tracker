@@ -16,5 +16,9 @@ class JobTrackerServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php'),
         ]);
+
+        $this->publishesMigrations([
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ]);
     }
 }
