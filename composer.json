@@ -53,5 +53,8 @@
       ]
     }
   },
-  "prefer-stable": true
+  "prefer-stable": true,
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
 }
