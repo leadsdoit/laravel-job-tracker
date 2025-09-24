@@ -12,11 +12,9 @@ return new class extends Migration {
         Schema::create(config('job-tracker.tables.jobs'), function (Blueprint $table): void {
             $groupTableName = config('job-tracker.tables.groups');
 
-            $foreignKeyName = str_ends_with($groupTableName, 's')
-                ? substr($groupTableName, 0, -1).'_id'
-                : $groupTableName.'_id';
+            $groupForeignId = getForeignIdColumnName($groupTableName);
 
-            $table->foreignId($foreignKeyName)->constrained($groupTableName)->cascadeOnDelete();
+            $table->foreignId($groupForeignId)->constrained($groupTableName)->cascadeOnDelete();
             $table->uuid();
         });
     }

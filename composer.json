@@ -24,6 +24,9 @@
   },
   "license": "MIT",
   "autoload": {
+    "files": [
+      "src/Helpers/db.php"
+    ],
     "psr-4": {
       "AZirka\\JobTracker\\": "src/"
     },
