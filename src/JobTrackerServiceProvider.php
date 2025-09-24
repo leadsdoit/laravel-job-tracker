@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace AZirka\JobTracker;
+
 use Illuminate\Support\ServiceProvider;
 
 class JobTrackerServiceProvider extends ServiceProvider

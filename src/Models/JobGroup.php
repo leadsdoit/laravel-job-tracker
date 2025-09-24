@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AZirka\JobTracker\Models;
 
-use Enum\JTGroupStatus;
+use AZirka\JobTracker\Enum\JTGroupStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
