@@ -28,7 +28,8 @@
       "src/Helpers/db.php"
     ],
     "psr-4": {
-      "AZirka\\JobTracker\\": "src/"
+      "AZirka\\JobTracker\\": "src/",
+      "AZirka\\JobTracker\\Database\\Factories\\": "database/factories/"
     },
     "exclude-from-classmap": [
       "/tests/"

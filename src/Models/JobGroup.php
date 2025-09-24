@@ -5,16 +5,20 @@ declare(strict_types=1);
 namespace AZirka\JobTracker\Models;
 
 use AZirka\JobTracker\Enum\JTGroupStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class JobGroup extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'title',
         'status',
         'time_to_check',
         'next_check_at',
+        'payload',
         'description',
     ];
 
