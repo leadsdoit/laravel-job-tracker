@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AZirka\JobTracker;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
 
 class JobTrackerServiceProvider extends ServiceProvider
@@ -18,6 +19,10 @@ class JobTrackerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
             $this->publishesMigrations([__DIR__.'/../database/migrations' => database_path('migrations')]);
+
+            Factory::guessFactoryNamesUsing(function (string $modelName): string {
+                return 'AZirka\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
+            });
         }
     }
 }
