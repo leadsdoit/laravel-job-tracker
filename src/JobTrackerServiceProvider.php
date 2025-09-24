@@ -13,12 +13,9 @@ class JobTrackerServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php'),
-        ]);
-
-        $this->publishesMigrations([
-            __DIR__.'/../database/migrations' => database_path('migrations'),
-        ]);
+        if ($this->app->runningInConsole()) {
+            $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
+            $this->publishesMigrations([__DIR__.'/../database/migrations' => database_path('migrations')]);
+        }
     }
 }
