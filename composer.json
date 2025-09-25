@@ -1,5 +1,5 @@
 {
-  "name": "azirka/job-tracker",
+  "name": "azirka/laravel-job-tracker",
   "description": "A Laravel package to monitor jobs by groups, track their execution status, and dispatch events on group start and completion.",
   "keywords": [
     "laravel",
