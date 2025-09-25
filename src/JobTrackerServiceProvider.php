@@ -18,11 +18,31 @@ class JobTrackerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
-            $this->publishesMigrations([__DIR__.'/../database/migrations' => database_path('migrations')]);
+            $this->publishesMigrations($this->publishableMigrations());
 
             Factory::guessFactoryNamesUsing(function (string $modelName): string {
                 return 'AZirka\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
             });
         }
+    }
+
+    private function publishableMigrations(): array
+    {
+        $src = __DIR__.'/../database/migrations';
+        $out = [];
+
+        $files = glob($src.'/*.php');
+        sort($files);
+
+        $ts = time();
+        foreach ($files as $i => $file) {
+            $basename = basename($file);
+            $clean = preg_replace('/^\d+_/', '', $basename);
+            $targetName = date('Y_m_d_His', $ts + $i).'_'.$clean;
+
+            $out[$file] = database_path("migrations/{$targetName}");
+        }
+
+        return $out;
     }
 }
