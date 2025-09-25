@@ -15,7 +15,7 @@ class JobGroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'         => fake()->title,
+            'title'         => fake()->numerify('title-########'),
             'status'        => fake()->randomElement(JTGroupStatus::values()),
             'time_to_check' => fake()->numberBetween(1, 600),
             'next_check_at' => null,
