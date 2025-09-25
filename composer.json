@@ -56,6 +56,7 @@
   },
   "prefer-stable": true,
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+    "test-feature": "vendor/bin/phpunit tests/Feature"
   }
 }
