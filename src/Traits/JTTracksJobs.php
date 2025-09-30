@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace AZirka\JobTracker\Traits;
 
-use Exception;
+use AZirka\JobTracker\Exceptions\JTUninitializedPropertyException;
 
 trait JTTracksJobs
 {
     protected ?int $jtJobGroupId = null;
 
-    public function setJobGroupId(int $jobGroupId): void
+    public function setJobGroupId(int $jobGroupId): static
     {
         $this->jtJobGroupId = $jobGroupId;
+
+        return $this;
     }
 
     /**
-     * @throws Exception
+     * @throws JTUninitializedPropertyException
      */
     public function getJobGroupId(): int
     {
-        if (is_null($this->jtJobGroupId)) {
-            throw new Exception(
-                'Job group id is not set, call method setJobGroupId() while dispatching the job or in the constructor'
-            );
+        if ($this->jtJobGroupId === null) {
+            throw new JTUninitializedPropertyException('jtJobGroupId', static::class);
         }
 
         return $this->jtJobGroupId;
