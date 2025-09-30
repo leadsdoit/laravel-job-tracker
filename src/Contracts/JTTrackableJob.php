@@ -6,5 +6,7 @@ namespace AZirka\JobTracker\Contracts;
 
 interface JTTrackableJob
 {
+    public function setJobGroupId(int $jobGroupId): void;
 
+    public function getJobGroupId(): int;
 }
