@@ -16,9 +16,25 @@ class JobRecord extends Model
         'uuid',
     ];
 
+    public static function findOrCreate(int $jobGroupId, string $uuid): static
+    {
+        return static::firstOrCreate([
+            getForeignIdColumnName(config('job-tracker.tables.groups')) => $jobGroupId,
+            'uuid'                                                      => $uuid,
+        ]);
+    }
+
+    public static function deleteByGroupAndUuid(int $jobGroupId, string $uuid): int
+    {
+        return static::query()
+            ->where(getForeignIdColumnName(config('job-tracker.tables.groups')), $jobGroupId)
+            ->where('uuid', $uuid)
+            ->delete();
+    }
+
     public function getFillable(): array
     {
-        return [...parent::getFillable(), [getForeignIdColumnName(config('job-tracker.tables.groups'))]];
+        return [...parent::getFillable(), getForeignIdColumnName(config('job-tracker.tables.groups'))];
     }
 
     public function getTable(): string
