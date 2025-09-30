@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace AZirka\JobTracker;
 
+use AZirka\JobTracker\Listeners\JobEventSubscriber;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class JobTrackerServiceProvider extends ServiceProvider
@@ -16,6 +18,8 @@ class JobTrackerServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Event::subscribe(JobEventSubscriber::class);
+
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
             $this->publishesMigrations($this->publishableMigrations());
