@@ -57,6 +57,7 @@
   "prefer-stable": true,
   "scripts": {
     "test": "vendor/bin/phpunit",
-    "test-feature": "vendor/bin/phpunit tests/Feature"
+    "test-u": "vendor/bin/phpunit tests/Unit",
+    "test-f": "vendor/bin/phpunit tests/Feature"
   }
 }
