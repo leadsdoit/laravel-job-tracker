@@ -15,6 +15,7 @@ class JobRecord extends Model
     protected $fillable = [
         'uuid',
     ];
+    public $timestamps = false;
 
     public static function findOrCreate(int $jobGroupId, string $uuid): static
     {
