@@ -14,18 +14,34 @@ class JTJobRecord extends Model
 
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
         $this->table = config('job-tracker.tables.jobs');
+        $this->primaryKey = null;
+        $this->timestamps = false;
+        $this->incrementing = false;
+        $this->guarded = [];
+
+        parent::__construct($attributes);
     }
-    protected $fillable = ['uuid'];
-    public $timestamps = false;
 
     public static function findOrCreate(int $jobGroupId, string $uuid): static
     {
-        return static::firstOrCreate([
+        $model = static::query()
+            ->where(getForeignIdColumnName(config('job-tracker.tables.groups')), $jobGroupId)
+            ->where('uuid', $uuid)
+            ->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        $model = new static([
             getForeignIdColumnName(config('job-tracker.tables.groups')) => $jobGroupId,
             'uuid'                                                      => $uuid,
         ]);
+
+        $model->save();
+
+        return $model;
     }
 
     public static function deleteByGroupAndUuid(int $jobGroupId, string $uuid): int
@@ -34,16 +50,6 @@ class JTJobRecord extends Model
             ->where(getForeignIdColumnName(config('job-tracker.tables.groups')), $jobGroupId)
             ->where('uuid', $uuid)
             ->delete();
-    }
-
-    public function getFillable(): array
-    {
-        return [...parent::getFillable(), getForeignIdColumnName(config('job-tracker.tables.groups'))];
-    }
-
-    public function getTable(): string
-    {
-        return config('job-tracker.tables.jobs');
     }
 
     public function jobGroup(): BelongsTo

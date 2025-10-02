@@ -15,8 +15,8 @@ class JTJobGroup extends Model
 
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
         $this->table = config('job-tracker.tables.groups');
+        parent::__construct($attributes);
     }
 
     protected $fillable = [
@@ -48,11 +48,6 @@ class JTJobGroup extends Model
                 $model->next_check_at = now()->addSeconds($model->time_to_check);
             }
         });
-    }
-
-    public function getTable(): string
-    {
-        return config('job-tracker.tables.groups');
     }
 
     public function jobRecords(): HasMany
