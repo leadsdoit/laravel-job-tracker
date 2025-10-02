@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AZirka\Tests\Feature;
 
-use AZirka\JobTracker\Models\JobGroup;
+use AZirka\JobTracker\Models\JTJobGroup;
 use Carbon\Carbon;
 
 class JobGroupTest extends AFeatureTestCase
@@ -13,9 +13,9 @@ class JobGroupTest extends AFeatureTestCase
     {
         $number = 5;
 
-        JobGroup::factory()->createMany($number);
+        JTJobGroup::factory()->createMany($number);
 
-        $jobGroups = JobGroup::all();
+        $jobGroups = JTJobGroup::all();
 
         $this->assertEquals($number, $jobGroups->count(), 'Created Job group count should be '.$number);
     }
@@ -24,7 +24,7 @@ class JobGroupTest extends AFeatureTestCase
     {
         Carbon::setTestNow('2025-01-01 12:00:00');
 
-        $jobGroup = JobGroup::factory()->create([
+        $jobGroup = JTJobGroup::factory()->create([
             'time_to_check' => 60,
             'next_check_at' => Carbon::parse('2025-01-01 12:01:00'),
         ]);
@@ -46,7 +46,7 @@ class JobGroupTest extends AFeatureTestCase
     {
         Carbon::setTestNow('2025-01-01 12:00:00');
 
-        $jobGroup = JobGroup::factory()->create([
+        $jobGroup = JTJobGroup::factory()->create([
             'time_to_check' => 60,
             'next_check_at' => Carbon::parse('2025-01-01 15:00:00'),
         ]);
@@ -64,7 +64,7 @@ class JobGroupTest extends AFeatureTestCase
     {
         Carbon::setTestNow('2025-01-01 12:00:00');
 
-        $jobGroup = JobGroup::factory()->create([
+        $jobGroup = JTJobGroup::factory()->create([
             'time_to_check' => 60,
             'next_check_at' => Carbon::parse('2025-01-01 12:01:00'),
         ]);
@@ -85,7 +85,7 @@ class JobGroupTest extends AFeatureTestCase
     {
         Carbon::setTestNow('2025-01-01 12:00:00');
 
-        $jobGroup = JobGroup::factory()->create([
+        $jobGroup = JTJobGroup::factory()->create([
             'title'         => 'Original Title',
             'time_to_check' => 60,
             'next_check_at' => Carbon::parse('2025-01-01 15:00:00'),

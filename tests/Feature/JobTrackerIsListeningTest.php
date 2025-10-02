@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace AZirka\Tests\Feature;
 
 use AZirka\JobTracker\Listeners\JobEventSubscriber;
-use AZirka\JobTracker\Models\JobGroup;
-use AZirka\JobTracker\Models\JobRecord;
+use AZirka\JobTracker\Models\JTJobGroup;
+use AZirka\JobTracker\Models\JTJobRecord;
 use AZirka\Tests\Support\Job\NotTrackableJob;
 use AZirka\Tests\Support\Job\TrackableFailedJob;
 use AZirka\Tests\Support\Job\TrackableJob;
@@ -43,11 +43,11 @@ class JobTrackerIsListeningTest extends AFeatureTestCase
 
     public function test_create_and_remove_job_record_for_trackable_job(): void
     {
-        $jobGroup = JobGroup::factory()->create();
+        $jobGroup = JTJobGroup::factory()->create();
 
         Event::listen(JobProcessing::class, function (JobProcessing $event) use ($jobGroup): void {
             $this->assertDatabaseHas(
-                JobRecord::class,
+                JTJobRecord::class,
                 [
                     getForeignIdColumnName(config('job-tracker.tables.groups')) => $jobGroup->id,
                     'uuid'                                                      => $event->job->uuid(),
@@ -56,7 +56,7 @@ class JobTrackerIsListeningTest extends AFeatureTestCase
         });
         Event::listen(JobProcessed::class, function (JobProcessed $event) use ($jobGroup): void {
             $this->assertDatabaseMissing(
-                JobRecord::class,
+                JTJobRecord::class,
                 [
                     getForeignIdColumnName(config('job-tracker.tables.groups')) => $jobGroup->id,
                     'uuid'                                                      => $event->job->uuid(),
@@ -67,13 +67,13 @@ class JobTrackerIsListeningTest extends AFeatureTestCase
         $job = (new TrackableJob())->setJobGroupId($jobGroup->id);
         dispatch($job);
 
-        $this->assertDatabaseCount(JobRecord::class, 0);
+        $this->assertDatabaseCount(JTJobRecord::class, 0);
     }
 
     public function test_not_trackable_job_is_ignored(): void
     {
         Event::listen(JobProcessing::class, function (JobProcessing $event): void {
-            $this->assertDatabaseMissing(JobRecord::class, ['uuid' => $event->job->uuid()]);
+            $this->assertDatabaseMissing(JTJobRecord::class, ['uuid' => $event->job->uuid()]);
         });
 
         dispatch(new NotTrackableJob);
@@ -81,11 +81,11 @@ class JobTrackerIsListeningTest extends AFeatureTestCase
 
     public function test_create_and_remove_job_record_for_trackable_failed_job(): void
     {
-        $jobGroup = JobGroup::factory()->create();
+        $jobGroup = JTJobGroup::factory()->create();
 
         Event::listen(JobProcessing::class, function (JobProcessing $event) use ($jobGroup): void {
             $this->assertDatabaseHas(
-                JobRecord::class,
+                JTJobRecord::class,
                 [
                     getForeignIdColumnName(config('job-tracker.tables.groups')) => $jobGroup->id,
                     'uuid'                                                      => $event->job->uuid(),
@@ -94,7 +94,7 @@ class JobTrackerIsListeningTest extends AFeatureTestCase
         });
         Event::listen(JobFailed::class, function (JobFailed $event) use ($jobGroup): void {
             $this->assertDatabaseMissing(
-                JobRecord::class,
+                JTJobRecord::class,
                 [
                     getForeignIdColumnName(config('job-tracker.tables.groups')) => $jobGroup->id,
                     'uuid'                                                      => $event->job->uuid(),
@@ -108,7 +108,7 @@ class JobTrackerIsListeningTest extends AFeatureTestCase
         $job = (new TrackableFailedJob())->setJobGroupId($jobGroup->id);
         dispatch($job);
 
-        $this->assertDatabaseCount(JobRecord::class, 0);
+        $this->assertDatabaseCount(JTJobRecord::class, 0);
     }
 
     private function assertSubscriberAttached(string $eventClass, string $subscriberClass, string $method): void

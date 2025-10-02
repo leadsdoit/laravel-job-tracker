@@ -9,9 +9,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class JobGroup extends Model
+class JTJobGroup extends Model
 {
     use HasFactory;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('job-tracker.tables.groups');
+    }
 
     protected $fillable = [
         'title',
@@ -30,14 +36,14 @@ class JobGroup extends Model
 
     protected static function booted(): void
     {
-        static::creating(function (JobGroup $model) {
+        static::creating(function (JTJobGroup $model) {
             if (is_null($model->next_check_at)) {
                 $ttc = $model->time_to_check ?? config('job-tracker.ttc');
                 $model->next_check_at = now()->addSeconds($ttc);
             }
         });
 
-        static::updating(function (JobGroup $model) {
+        static::updating(function (JTJobGroup $model) {
             if ($model->isDirty('time_to_check') && is_null($model->next_check_at)) {
                 $model->next_check_at = now()->addSeconds($model->time_to_check);
             }
@@ -51,6 +57,6 @@ class JobGroup extends Model
 
     public function jobRecords(): HasMany
     {
-        return $this->hasMany(JobRecord::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');
+        return $this->hasMany(JTJobRecord::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');
     }
 }

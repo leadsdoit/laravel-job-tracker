@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class JobRecord extends Model
+class JTJobRecord extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'uuid',
-    ];
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('job-tracker.tables.jobs');
+    }
+    protected $fillable = ['uuid'];
     public $timestamps = false;
 
     public static function findOrCreate(int $jobGroupId, string $uuid): static
@@ -45,6 +48,6 @@ class JobRecord extends Model
 
     public function jobGroup(): BelongsTo
     {
-        return $this->belongsTo(JobGroup::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');
+        return $this->belongsTo(JTJobGroup::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');
     }
 }

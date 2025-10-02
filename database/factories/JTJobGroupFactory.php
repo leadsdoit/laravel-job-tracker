@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace AZirka\JobTracker\Database\Factories;
 
 use AZirka\JobTracker\Enum\JTGroupStatus;
-use AZirka\JobTracker\Models\JobGroup;
+use AZirka\JobTracker\Models\JTJobGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class JobGroupFactory extends Factory
+class JTJobGroupFactory extends Factory
 {
-    protected $model = JobGroup::class;
+    protected $model = JTJobGroup::class;
 
     public function definition(): array
     {

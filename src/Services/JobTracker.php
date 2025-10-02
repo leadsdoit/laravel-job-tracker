@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AZirka\JobTracker\Services;
 
 use AZirka\JobTracker\Contracts\JTTrackableJob;
-use AZirka\JobTracker\Models\JobRecord;
+use AZirka\JobTracker\Models\JTJobRecord;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\JobProcessing;
@@ -18,7 +18,7 @@ class JobTracker
 
         if ($instance instanceof JTTrackableJob) {
             $jobGroupId = $instance->getJobGroupId();
-            JobRecord::findOrCreate($jobGroupId, $event->job->uuid());
+            JTJobRecord::findOrCreate($jobGroupId, $event->job->uuid());
         }
     }
 
@@ -28,7 +28,7 @@ class JobTracker
 
         if ($instance instanceof JTTrackableJob) {
             $jobGroupId = $instance->getJobGroupId();
-            JobRecord::deleteByGroupAndUuid($jobGroupId, $event->job->uuid());
+            JTJobRecord::deleteByGroupAndUuid($jobGroupId, $event->job->uuid());
         }
     }
 
