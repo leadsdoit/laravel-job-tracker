@@ -52,6 +52,11 @@ class JTJobRecord extends Model
             ->delete();
     }
 
+    public static function deleteByUuid(string $uuid): int
+    {
+        return static::query()->where('uuid', $uuid)->delete();
+    }
+
     public function jobGroup(): BelongsTo
     {
         return $this->belongsTo(JTJobGroup::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');

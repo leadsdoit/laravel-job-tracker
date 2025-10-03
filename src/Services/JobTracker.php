@@ -24,12 +24,7 @@ class JobTracker
 
     public function unTrack(JobProcessed|JobFailed $event): void
     {
-        $instance = $this->getRealJobInstance($event);
-
-        if ($instance instanceof JTTrackableJob) {
-            $jobGroupId = $instance->getJobGroupId();
-            JTJobRecord::deleteByGroupAndUuid($jobGroupId, $event->job->uuid());
-        }
+        JTJobRecord::deleteByUuid($event->job->uuid());
     }
 
     private function getRealJobInstance(JobProcessing|JobProcessed|JobFailed $event): ?object
