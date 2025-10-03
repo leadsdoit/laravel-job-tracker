@@ -9,6 +9,6 @@ enum JTGroupStatus: string
 {
     use EnumValues;
 
-    case NEW = 'new';
+    case AWAITING = 'awaiting';
     case RUNNING = 'running';
 }

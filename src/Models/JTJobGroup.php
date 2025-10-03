@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AZirka\JobTracker\Models;
 
+use AZirka\JobTracker\Builders\JobGroupBuilder;
 use AZirka\JobTracker\Enum\JTGroupStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,7 @@ class JTJobGroup extends Model
         'status',
         'time_to_check',
         'next_check_at',
+        'number_job_last_check',
         'payload',
         'description',
     ];
@@ -50,8 +52,27 @@ class JTJobGroup extends Model
         });
     }
 
+    public function newEloquentBuilder($query): JobGroupBuilder
+    {
+        return new JobGroupBuilder($query);
+    }
+
     public function jobRecords(): HasMany
     {
         return $this->hasMany(JTJobRecord::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');
+    }
+
+    public function updateStatusAwaiting(): self
+    {
+        $this->update(['status' => JTGroupStatus::AWAITING]);
+
+        return $this;
+    }
+
+    public function updateStatusRunning(): self
+    {
+        $this->update(['status' => JTGroupStatus::RUNNING]);
+
+        return $this;
     }
 }
