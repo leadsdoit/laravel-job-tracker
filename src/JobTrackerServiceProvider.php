@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AZirka\JobTracker;
 
+use AZirka\JobTracker\Commands\JTCheckGroupCommand;
 use AZirka\JobTracker\Listeners\JobEventSubscriber;
 use AZirka\JobTracker\Services\JobTracker;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,6 +27,9 @@ class JobTrackerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
             $this->publishesMigrations($this->publishableMigrations());
+            $this->commands([
+                JTCheckGroupCommand::class,
+            ]);
 
             Factory::guessFactoryNamesUsing(function (string $modelName): string {
                 return 'AZirka\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
