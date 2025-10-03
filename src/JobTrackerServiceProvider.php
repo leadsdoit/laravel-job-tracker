@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AZirka\JobTracker;
 
 use AZirka\JobTracker\Listeners\JobEventSubscriber;
+use AZirka\JobTracker\Services\JobTracker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -14,6 +15,8 @@ class JobTrackerServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/job-tracker.php', 'job-tracker');
+
+        $this->app->singleton(JobTracker::class);
     }
 
     public function boot(): void
