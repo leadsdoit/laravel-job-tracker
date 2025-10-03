@@ -62,6 +62,13 @@ class JTJobGroup extends Model
         return $this->hasMany(JTJobRecord::class, getForeignIdColumnName(config('job-tracker.tables.groups')), 'id');
     }
 
+    public function increaseNextCheckAt(): self
+    {
+        $this->next_check_at = now()->addSeconds($this->time_to_check);
+
+        return $this;
+    }
+
     public function updateStatusAwaiting(): self
     {
         $this->update(['status' => JTGroupStatus::AWAITING]);
