@@ -11,7 +11,7 @@ class JTJobGroupFinished
 {
     use Dispatchable;
 
-    public function __construct(private readonly JTJobGroup $jobGroup)
+    public function __construct(public readonly JTJobGroup $jobGroup)
     {
     }
 }

@@ -31,9 +31,9 @@ class JobTrackerServiceProvider extends ServiceProvider
 
         JTJobGroup::observe(JTJobGroupObserver::class);
         Event::subscribe(JobEventSubscriber::class);
+        $this->bootCommands();
 
         if ($this->app->runningInConsole()) {
-            $this->bootCommands();
             $this->bootSchedule();
             $this->bootPublishable();
             $this->bootFactories();
