@@ -6,6 +6,8 @@ namespace AZirka\JobTracker;
 
 use AZirka\JobTracker\Commands\JTCheckGroupCommand;
 use AZirka\JobTracker\Listeners\JobEventSubscriber;
+use AZirka\JobTracker\Models\JTJobGroup;
+use AZirka\JobTracker\Observers\JTJobGroupObserver;
 use AZirka\JobTracker\Services\JobTracker;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,6 +29,7 @@ class JobTrackerServiceProvider extends ServiceProvider
             return;
         }
 
+        JTJobGroup::observe(JTJobGroupObserver::class);
         Event::subscribe(JobEventSubscriber::class);
 
         if ($this->app->runningInConsole()) {
