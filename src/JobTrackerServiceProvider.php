@@ -7,6 +7,7 @@ namespace AZirka\JobTracker;
 use AZirka\JobTracker\Commands\JTCheckGroupCommand;
 use AZirka\JobTracker\Listeners\JobEventSubscriber;
 use AZirka\JobTracker\Services\JobTracker;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -25,16 +26,31 @@ class JobTrackerServiceProvider extends ServiceProvider
         Event::subscribe(JobEventSubscriber::class);
 
         if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
-            $this->publishesMigrations($this->publishableMigrations());
-            $this->commands([
-                JTCheckGroupCommand::class,
-            ]);
-
-            Factory::guessFactoryNamesUsing(function (string $modelName): string {
-                return 'AZirka\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
-            });
+            $this->bootCommands();
+            $this->bootSchedule();
+            $this->bootPublishable();
+            $this->bootFactories();
         }
+    }
+
+    private function bootCommands(): void
+    {
+        $this->commands([
+            JTCheckGroupCommand::class,
+        ]);
+    }
+
+    private function bootSchedule(): void
+    {
+        $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+            $schedule->command(JTCheckGroupCommand::class)->everyMinute();
+        });
+    }
+
+    private function bootPublishable(): void
+    {
+        $this->publishes([__DIR__.'/../config/job-tracker.php' => config_path('job-tracker.php')]);
+        $this->publishesMigrations($this->publishableMigrations());
     }
 
     private function publishableMigrations(): array
@@ -55,5 +71,12 @@ class JobTrackerServiceProvider extends ServiceProvider
         }
 
         return $out;
+    }
+
+    private function bootFactories(): void
+    {
+        Factory::guessFactoryNamesUsing(function (string $modelName): string {
+            return 'AZirka\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
+        });
     }
 }
