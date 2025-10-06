@@ -23,6 +23,10 @@ class JobTrackerServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if (!config('job-tracker.enabled')) {
+            return;
+        }
+
         Event::subscribe(JobEventSubscriber::class);
 
         if ($this->app->runningInConsole()) {
