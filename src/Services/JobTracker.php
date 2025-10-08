@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Services;
+namespace Ldi\JobTracker\Services;
 
-use AZirka\JobTracker\Contracts\JTTrackableJob;
-use AZirka\JobTracker\Models\JTJobRecord;
+use Ldi\JobTracker\Contracts\JTTrackableJob;
+use Ldi\JobTracker\Models\JTJobRecord;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\JobProcessing;

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Enum;
-use AZirka\JobTracker\Traits\Enum\EnumValues;
+namespace Ldi\JobTracker\Enum;
+use Ldi\JobTracker\Traits\Enum\EnumValues;
 
 enum JTGroupStatus: string
 {

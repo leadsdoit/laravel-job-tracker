@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Builders;
+namespace Ldi\JobTracker\Builders;
 
-use AZirka\JobTracker\Enum\JTGroupStatus;
+use Ldi\JobTracker\Enum\JTGroupStatus;
 use Illuminate\Database\Eloquent\Builder;
 
 class JobGroupBuilder extends Builder

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AZirka\Tests\Support\Job;
+namespace Ldi\Tests\Support\Job;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

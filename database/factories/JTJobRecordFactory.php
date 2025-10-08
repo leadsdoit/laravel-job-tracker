@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Database\Factories;
+namespace Ldi\JobTracker\Database\Factories;
 
-use AZirka\JobTracker\Models\JTJobGroup;
-use AZirka\JobTracker\Models\JTJobRecord;
+use Ldi\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Models\JTJobRecord;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class JTJobRecordFactory extends Factory

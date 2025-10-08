@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Models;
+namespace Ldi\JobTracker\Models;
 
-use AZirka\JobTracker\Builders\JobGroupBuilder;
-use AZirka\JobTracker\Enum\JTGroupStatus;
+use Ldi\JobTracker\Builders\JobGroupBuilder;
+use Ldi\JobTracker\Enum\JTGroupStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

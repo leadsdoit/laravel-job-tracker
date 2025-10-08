@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace AZirka\Tests\Feature;
+namespace Ldi\Tests\Feature;
 
-use AZirka\JobTracker\Listeners\JobEventSubscriber;
-use AZirka\JobTracker\Models\JTJobGroup;
-use AZirka\JobTracker\Models\JTJobRecord;
-use AZirka\Tests\Support\Job\NotTrackableJob;
-use AZirka\Tests\Support\Job\TrackableFailedJob;
-use AZirka\Tests\Support\Job\TrackableJob;
+use Ldi\JobTracker\Listeners\JobEventSubscriber;
+use Ldi\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Models\JTJobRecord;
+use Ldi\Tests\Support\Job\NotTrackableJob;
+use Ldi\Tests\Support\Job\TrackableFailedJob;
+use Ldi\Tests\Support\Job\TrackableJob;
 use Closure;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Queue\Events\JobFailed;

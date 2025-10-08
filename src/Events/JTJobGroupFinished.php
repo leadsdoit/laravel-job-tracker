@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Events;
+namespace Ldi\JobTracker\Events;
 
-use AZirka\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Models\JTJobGroup;
 use Illuminate\Foundation\Events\Dispatchable;
 
 class JTJobGroupFinished

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Services;
+namespace Ldi\JobTracker\Services;
 
-use AZirka\JobTracker\Builders\JobGroupBuilder;
-use AZirka\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Builders\JobGroupBuilder;
+use Ldi\JobTracker\Models\JTJobGroup;
 use Illuminate\Database\Eloquent\Collection;
 
 class JobGroupMonitorService

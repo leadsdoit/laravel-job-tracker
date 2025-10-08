@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker;
+namespace Ldi\JobTracker;
 
-use AZirka\JobTracker\Commands\JTCheckGroupCommand;
-use AZirka\JobTracker\Listeners\JobEventSubscriber;
-use AZirka\JobTracker\Models\JTJobGroup;
-use AZirka\JobTracker\Observers\JTJobGroupObserver;
-use AZirka\JobTracker\Services\JobTracker;
+use Ldi\JobTracker\Commands\JTCheckGroupCommand;
+use Ldi\JobTracker\Listeners\JobEventSubscriber;
+use Ldi\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Observers\JTJobGroupObserver;
+use Ldi\JobTracker\Services\JobTracker;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Event;
@@ -83,7 +83,7 @@ class JobTrackerServiceProvider extends ServiceProvider
     private function bootFactories(): void
     {
         Factory::guessFactoryNamesUsing(function (string $modelName): string {
-            return 'AZirka\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
+            return 'Ldi\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
         });
     }
 }

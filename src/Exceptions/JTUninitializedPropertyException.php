@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Exceptions;
+namespace Ldi\JobTracker\Exceptions;
 
 use LogicException;
 

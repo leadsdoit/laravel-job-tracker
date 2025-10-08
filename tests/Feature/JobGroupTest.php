@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AZirka\Tests\Feature;
+namespace Ldi\Tests\Feature;
 
-use AZirka\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Models\JTJobGroup;
 use Carbon\Carbon;
 
 class JobGroupTest extends AFeatureTestCase

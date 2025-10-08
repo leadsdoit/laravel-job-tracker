@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Traits;
+namespace Ldi\JobTracker\Traits;
 
-use AZirka\JobTracker\Exceptions\JTUninitializedPropertyException;
+use Ldi\JobTracker\Exceptions\JTUninitializedPropertyException;
 
 trait JTTracksJobs
 {

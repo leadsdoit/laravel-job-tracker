@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Traits\Enum;
+namespace Ldi\JobTracker\Traits\Enum;
 
 trait EnumValues
 {

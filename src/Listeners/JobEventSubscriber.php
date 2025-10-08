@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Listeners;
+namespace Ldi\JobTracker\Listeners;
 
-use AZirka\JobTracker\Services\JobTrackDecider;
-use AZirka\JobTracker\Services\JobTracker;
+use Ldi\JobTracker\Services\JobTrackDecider;
+use Ldi\JobTracker\Services\JobTracker;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;

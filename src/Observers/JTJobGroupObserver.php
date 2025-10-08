@@ -2,18 +2,20 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Observers;
+namespace Ldi\JobTracker\Observers;
 
-use AZirka\JobTracker\Enum\JTGroupStatus;
-use AZirka\JobTracker\Events\JTJobGroupFinished;
-use AZirka\JobTracker\Events\JTJobGroupRunning;
-use AZirka\JobTracker\Models\JTJobGroup;
+use Ldi\JobTracker\Enum\JTGroupStatus;
+use Ldi\JobTracker\Events\JTJobGroupFinished;
+use Ldi\JobTracker\Events\JTJobGroupRunning;
+use Ldi\JobTracker\Models\JTJobGroup;
 
 class JTJobGroupObserver
 {
     public function updated(JTJobGroup $model): void
     {
-        if ($model->wasChanged('status')) {
+        $d = $model->getChanges();
+
+//        if ($model->wasChanged('status')) {
             $event = match ($model->status) {
                 JTGroupStatus::AWAITING => new JTJobGroupFinished($model),
                 JTGroupStatus::RUNNING  => new JTJobGroupRunning($model),
@@ -23,6 +25,6 @@ class JTJobGroupObserver
             if ($event !== null) {
                 event($event);
             }
-        }
+//        }
     }
 }

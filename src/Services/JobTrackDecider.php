@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Services;
+namespace Ldi\JobTracker\Services;
 
-use AZirka\JobTracker\Contracts\JTTrackableJob;
+use Ldi\JobTracker\Contracts\JTTrackableJob;
 use Illuminate\Contracts\Queue\Job;
 
 final class JobTrackDecider

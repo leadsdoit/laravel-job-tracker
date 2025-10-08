@@ -1,5 +1,5 @@
 {
-  "name": "azirka/laravel-job-tracker",
+  "name": "leadsdoit/laravel-job-tracker",
   "description": "A Laravel package to monitor jobs by groups, track their execution status, and dispatch events on group start and completion.",
   "keywords": [
     "laravel",
@@ -28,7 +28,7 @@
       "src/Helpers/db.php"
     ],
     "psr-4": {
-      "AZirka\\JobTracker\\": "src/"
+      "Ldi\\JobTracker\\": "src/"
     },
     "exclude-from-classmap": [
       "/tests/"
@@ -36,8 +36,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "AZirka\\Tests\\": "tests/",
-      "AZirka\\JobTracker\\Database\\Factories\\": "database/factories/"
+      "Ldi\\Tests\\": "tests/",
+      "Ldi\\JobTracker\\Database\\Factories\\": "database/factories/"
     }
   },
   "authors": [
@@ -50,7 +50,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "AZirka\\JobTracker\\JobTrackerServiceProvider"
+        "Ldi\\JobTracker\\JobTrackerServiceProvider"
       ]
     }
   },

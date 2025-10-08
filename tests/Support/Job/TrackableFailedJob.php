@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AZirka\Tests\Support\Job;
+namespace Ldi\Tests\Support\Job;
 
-use AZirka\JobTracker\Contracts\JTTrackableJob;
-use AZirka\JobTracker\Traits\JTTracksJobs;
+use Ldi\JobTracker\Contracts\JTTrackableJob;
+use Ldi\JobTracker\Traits\JTTracksJobs;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

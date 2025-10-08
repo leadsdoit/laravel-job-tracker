@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AZirka\JobTracker\Commands;
+namespace Ldi\JobTracker\Commands;
 
-use AZirka\JobTracker\Services\JobGroupMonitorService;
+use Ldi\JobTracker\Services\JobGroupMonitorService;
 use Illuminate\Console\Command;
 
 class JTCheckGroupCommand extends Command

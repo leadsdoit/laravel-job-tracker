@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AZirka\Tests\Feature;
+namespace Ldi\Tests\Feature;
 
 use Orchestra\Testbench\TestCase;
 
@@ -21,7 +21,7 @@ abstract class AFeatureTestCase extends TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            'AZirka\JobTracker\JobTrackerServiceProvider',
+            'Ldi\JobTracker\JobTrackerServiceProvider',
         ];
     }
 
