@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create(config('job-tracker.tables.groups'), function (Blueprint $table): void {
             $table->id();
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('status')->default(JTGroupStatus::AWAITING->value);
             $table->integer('time_to_check')->default(config('job-tracker.ttc'));
             $table->integer('number_job_last_check')->default(0);
