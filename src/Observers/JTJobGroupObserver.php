@@ -13,9 +13,7 @@ class JTJobGroupObserver
 {
     public function updated(JTJobGroup $model): void
     {
-        $d = $model->getChanges();
-
-//        if ($model->wasChanged('status')) {
+        if ($model->wasChanged('status')) {
             $event = match ($model->status) {
                 JTGroupStatus::AWAITING => new JTJobGroupFinished($model),
                 JTGroupStatus::RUNNING  => new JTJobGroupRunning($model),
@@ -25,6 +23,6 @@ class JTJobGroupObserver
             if ($event !== null) {
                 event($event);
             }
-//        }
+        }
     }
 }
