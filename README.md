@@ -12,6 +12,11 @@ Use the artisan command to publish config and migration files:
 php  artisan vendor:publish --provider=Ldi\\JobTracker\\JobTrackerServiceProvider
 ```
 
+## Documentation
+
+- [Description how to use](/.docs/description.md)
+- [Simple example how to use](/.docs/example.md)
+
 ## License
 
 [MIT](LICENSE)
