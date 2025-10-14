@@ -15,7 +15,6 @@ The first and most flexible way is using the `setJobGroupId` method of the `Ldi\
 interface when dispatching the job.
 
 ```bash
-<?php
 
     TrackableJob::dispatch()->setJobGroupId($jobGroupId);
 ```
@@ -23,7 +22,6 @@ interface when dispatching the job.
 Another way to get a group when initializing a job.
 
 ```bash
-<?php
 
     public function __construct()
     {
