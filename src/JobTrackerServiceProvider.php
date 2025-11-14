@@ -36,7 +36,6 @@ class JobTrackerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->bootSchedule();
             $this->bootPublishable();
-            $this->bootFactories();
         }
     }
 
@@ -78,12 +77,5 @@ class JobTrackerServiceProvider extends ServiceProvider
         }
 
         return $out;
-    }
-
-    private function bootFactories(): void
-    {
-        Factory::guessFactoryNamesUsing(function (string $modelName): string {
-            return 'Ldi\\JobTracker\\Database\\Factories\\'.class_basename($modelName).'Factory';
-        });
     }
 }

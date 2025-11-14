@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ldi\Tests\Support\Job;
+namespace Tests\Support\Job;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

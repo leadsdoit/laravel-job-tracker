@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ldi\Tests\Support\Job;
+namespace Tests\Support\Job;
 
 use Ldi\JobTracker\Contracts\JTTrackableJob;
 use Ldi\JobTracker\Traits\JTTracksJobs;

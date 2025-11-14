@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ldi\Tests\Feature;
+namespace Tests\Feature;
 
 use Ldi\JobTracker\Models\JTJobGroup;
 use Carbon\Carbon;

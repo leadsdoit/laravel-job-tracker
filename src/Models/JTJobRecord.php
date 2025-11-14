@@ -7,10 +7,13 @@ namespace Ldi\JobTracker\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Database\Factories\JTJobRecordFactory;
 
 class JTJobRecord extends Model
 {
     use HasFactory;
+
+    protected static string $factory = JTJobRecordFactory::class;
 
     public function __construct(array $attributes = [])
     {

@@ -36,8 +36,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Ldi\\Tests\\": "tests/",
-      "Ldi\\JobTracker\\Database\\Factories\\": "database/factories/"
+      "Tests\\": "tests/",
+      "Database\\Factories\\": "database/factories/"
     }
   },
   "authors": [

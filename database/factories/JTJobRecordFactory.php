@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ldi\JobTracker\Database\Factories;
+namespace Database\Factories;
 
 use Ldi\JobTracker\Models\JTJobGroup;
 use Ldi\JobTracker\Models\JTJobRecord;

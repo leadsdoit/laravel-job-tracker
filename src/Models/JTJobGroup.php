@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Ldi\JobTracker\Models;
 
-use Ldi\JobTracker\Builders\JobGroupBuilder;
-use Ldi\JobTracker\Enum\JTGroupStatus;
+use Database\Factories\JTJobGroupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Ldi\JobTracker\Builders\JobGroupBuilder;
+use Ldi\JobTracker\Enum\JTGroupStatus;
 
 class JTJobGroup extends Model
 {
     use HasFactory;
+
+    protected static string $factory = JTJobGroupFactory::class;
 
     public function __construct(array $attributes = [])
     {
